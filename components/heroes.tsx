@@ -1,0 +1,26 @@
+"use client"
+
+import { useFetch } from "@/hooks/useFetch";
+import { HeroeCard } from "./heroe-card";
+import { Heroe } from "@/interfaces/Heroe";
+
+export const Heroes = () => {
+
+	const { data: heroes } = useFetch<Heroe[]>("https://overfast-api.tekrop.fr/heroes");
+
+
+
+
+	return (
+		<section className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 xl:gap-9">
+
+			{heroes?.map((heroe) => (
+				<HeroeCard  {...heroe} />
+
+			))}
+
+
+		</section>
+
+	);
+}
