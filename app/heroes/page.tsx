@@ -2,12 +2,18 @@ import { Heroes, SliderHeroesRole } from "@/components"
 import { Metadata } from "next"
 
 const getHeroes = async () => {
+	try {
+		const res = await fetch("https://overfast-api.tekrop.fr/heroes", { cache: 'force-cache' });
+		const data = await res.json();
+		return data;
+	}
+	catch (e) {
+		console.log(e);
 
-	const res = await fetch("https://overfast-api.tekrop.fr/heroes", { cache: 'force-cache' });
-	const data = await res.json();
+	}
 
-	return data;
 }
+
 
 
 
@@ -21,7 +27,7 @@ export default async function HeroesPage() {
 	const heroes = await getHeroes();
 
 	return (
-		<main className="flex flex-col items-center w-full min-h-screen bg-black gap-10 overflow-x-hidden">
+		<main className="flex flex-col items-center w-full min-h-screen bg-black gap-10 overflow-x-hidden pb-10">
 			<section className="relative w-full h-[190px] overflow-hidden xl:h-[370px]">
 				<img
 					className="scale-[1.6] relative top-[-50px] w-full h-full object-cover xl:scale-100 xl:top-[-61px]"

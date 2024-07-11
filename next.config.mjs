@@ -4,9 +4,9 @@ const nextConfig = {
 		remotePatterns: [
 			{
 				protocol: 'https',
-				hostname: "https://d15f34w2p8l1cc.cloudfront.net/overwatch",
+				hostname: 'd15f34w2p8l1cc.cloudfront.net',
 			},
-		]
+		],
 	}
 };
 

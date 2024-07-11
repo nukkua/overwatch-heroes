@@ -2,11 +2,16 @@
 import type { FullHero } from "@/interfaces/HeroInfo";
 import { HeroeInfo } from '@/components/heroe-info'
 import type { Metadata, ResolvingMetadata } from 'next'
+import { notFound } from "next/navigation";
 
 
-const getHero = async (key: string) => {
+const getHero = async (key: string): Promise<FullHero> => {
 	const res = await fetch(`https://overfast-api.tekrop.fr/heroes/${key}`);
 	const data = await res.json();
+
+	if (data?.detail?.[0]?.msg?.includes("Input should")) {
+		notFound();
+	}
 
 	return data;
 }
@@ -16,12 +21,19 @@ export async function generateMetadata(
 	{ params }: Props,
 	parent: ResolvingMetadata
 ): Promise<Metadata> {
-	const key: string = `Heroe: ${params.key.charAt(0).toUpperCase()}${params.key.slice(1)} `
+	try {
+		const key = await getHero(params.key);
+		return {
+			title: key.name,
+		}
 
-
-	return {
-		title: key,
+	} catch (e) {
+		return {
+			title: "Not found",
+		}
 	}
+
+
 }
 
 interface Props {

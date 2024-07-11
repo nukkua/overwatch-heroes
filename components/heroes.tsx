@@ -1,6 +1,4 @@
-"use client"
 
-import { useFetch } from "@/hooks/useFetch";
 import { HeroeCard } from "./heroe-card";
 import { Heroe } from "@/interfaces/Heroe";
 
@@ -16,6 +14,7 @@ export const Heroes = ({ heroes }: Props) => {
 
 			{heroes?.map((heroe) => (
 				<HeroeCard
+					key={heroe.key}
 					id={heroe.key}
 					name={heroe.name}
 					role={heroe.role}
