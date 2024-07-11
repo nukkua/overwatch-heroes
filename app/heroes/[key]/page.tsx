@@ -1,7 +1,6 @@
 
 import type { FullHero } from "@/interfaces/HeroInfo";
 import { HeroeInfo } from '@/components/heroe-info'
-import { useFetch } from '@/hooks/useFetch'
 import type { Metadata, ResolvingMetadata } from 'next'
 
 
@@ -31,9 +30,9 @@ interface Props {
 }
 
 export default async function HeroePage({ params }: Props) {
-	const { key: name } = params
+	const { key } = params
 
-	const hero = await getHero(name.toLowerCase())
+	const hero = await getHero(key.toLowerCase())
 	return (
 		<HeroeInfo hero={hero} />
 	)

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 type Icon = {
@@ -6,7 +5,7 @@ type Icon = {
 	damage: JSX.Element;
 	tank: JSX.Element;
 }
-const icon = {
+const icon: Icon = {
 	support:
 		<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 15.25a.75.75 0 0 0 0 1.5h1.75v1.75a.75.75 0 1 0 1.5 0v-1.75h1.75a.75.75 0 1 0 0-1.5h-1.75V13.5a.75.75 0 0 0-1.5 0v1.75z" /><path fill="currentColor" fill-rule="evenodd" d="M7.25 5.461V6.7c-.37.028-.738.059-1.107.093a3.246 3.246 0 0 0-2.946 3.233v7.95a3.247 3.247 0 0 0 2.946 3.233c3.896.363 7.818.363 11.714 0a3.247 3.247 0 0 0 2.946-3.233v-7.95a3.246 3.246 0 0 0-2.946-3.233A63.222 63.222 0 0 0 16.75 6.7V5.46a1.75 1.75 0 0 0-1.49-1.73l-1.22-.183a13.75 13.75 0 0 0-4.08 0l-1.22.183a1.75 1.75 0 0 0-1.49 1.73m6.567-.43a12.25 12.25 0 0 0-3.634 0l-1.22.183a.25.25 0 0 0-.213.247v1.143a63.161 63.161 0 0 1 6.5 0V5.46a.25.25 0 0 0-.213-.247zm3.901 3.255a61.661 61.661 0 0 0-11.436 0a1.746 1.746 0 0 0-1.585 1.739v.225h14.606v-.225c0-.902-.687-1.656-1.585-1.74m1.585 3.464H4.697v6.225c0 .902.687 1.656 1.585 1.74a61.88 61.88 0 0 0 11.436 0a1.746 1.746 0 0 0 1.585-1.74z" clip-rule="evenodd" /></svg>
 	,
@@ -18,14 +17,15 @@ const icon = {
 
 }
 interface Props {
+	id: string;
 	name: string;
 	portrait: string;
 	role: string;
 }
-export const HeroeCard = ({ name, portrait, role }: Props) => {
+export const HeroeCard = ({ id, name, portrait, role }: Props) => {
 
 	return (
-		<Link href={`/heroes/${name}`} className="flex flex-col bg-white p-0.5 rounded-sm items-center  hover:scale-105 xl:hover:scale-[1.15] hover:transform hover:duration-300 hover:ease-in-out transition-transform h-[235px] md:p-1 md:h-[321px] lg:w-[208px] xl:h-[290px] xl:w-[196px]">
+		<Link href={`/heroes/${id}`} className="flex flex-col bg-white p-0.5 rounded-sm items-center  hover:scale-105 xl:hover:scale-[1.15] hover:transform hover:duration-300 hover:ease-in-out transition-transform h-[235px] md:p-1 md:h-[321px] lg:w-[208px] xl:h-[290px] xl:w-[196px]">
 			<div className="flex overflow-hidden w-full h-full bg-blue-100">
 				<img className="overflow-hidden object-cover scale-[1.02]" src={portrait} alt="" />
 			</div>

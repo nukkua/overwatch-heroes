@@ -50,12 +50,12 @@ export const HeroeInfo = ({ hero }: { hero: FullHero }) => {
 			</section>
 			<div className="border"></div>
 			<section>
-				<img src={hero?.story.chapters[0].picture} alt="" />
+				<img src={hero?.story?.chapters[0]?.picture} alt="" />
 
 			</section>
 			<div className="border"></div>
 			<section>
-				<img src={hero?.story.chapters[1].picture} alt="" />
+				<img src={hero?.story?.chapters[1]?.picture} alt="" />
 
 			</section>
 		</main>
