@@ -1,12 +1,24 @@
 import { Heroes, SliderHeroesRole } from "@/components"
 import { Metadata } from "next"
 
+const getHeroes = async () => {
+
+	const res = await fetch("https://overfast-api.tekrop.fr/heroes", { cache: 'force-cache' });
+	const data = await res.json();
+
+	return data;
+}
+
+
+
 export const metadata: Metadata = {
 	title: "Heroes - Overwatch 2",
 	description: "All the heroes from the game Overwatch 2",
 }
 
-export default function HeroesPage() {
+export default async function HeroesPage() {
+
+	const heroes = await getHeroes();
 
 	return (
 		<main className="flex flex-col items-center w-full min-h-screen bg-black gap-10 overflow-x-hidden">
@@ -24,7 +36,7 @@ export default function HeroesPage() {
 
 			<p className="text-white font-bold text-center">Overwatch features an international cast of powerful heroes with captivating personalities and backstories. Explore the full roster below</p>
 			<div className="px-2">
-				<Heroes />
+				<Heroes heroes={heroes} />
 			</div>
 
 

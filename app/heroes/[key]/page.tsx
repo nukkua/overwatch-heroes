@@ -1,11 +1,17 @@
 
+import type { FullHero } from "@/interfaces/HeroInfo";
 import { HeroeInfo } from '@/components/heroe-info'
 import { useFetch } from '@/hooks/useFetch'
 import type { Metadata, ResolvingMetadata } from 'next'
 
-interface Props {
-	params: { key: string }
+
+const getHero = async (key: string) => {
+	const res = await fetch(`https://overfast-api.tekrop.fr/heroes/${key}`);
+	const data = await res.json();
+
+	return data;
 }
+
 
 export async function generateMetadata(
 	{ params }: Props,
@@ -19,9 +25,16 @@ export async function generateMetadata(
 	}
 }
 
-export default function HeroePage({ params }: Props) {
+interface Props {
+	params: { key: string },
+	heroe: FullHero,
+}
+
+export default async function HeroePage({ params }: Props) {
 	const { key: name } = params
+
+	const hero = await getHero(name.toLowerCase())
 	return (
-		<HeroeInfo name={name} />
+		<HeroeInfo hero={hero} />
 	)
 }

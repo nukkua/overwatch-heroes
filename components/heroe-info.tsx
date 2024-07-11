@@ -1,5 +1,4 @@
 "use client"
-import { useFetch } from "@/hooks/useFetch"
 import { FullHero } from "@/interfaces/HeroInfo";
 
 const icon = {
@@ -15,8 +14,7 @@ const icon = {
 }
 
 
-export const HeroeInfo = ({ name }: { name: string }) => {
-	const { data: hero } = useFetch<FullHero>(`https://overfast-api.tekrop.fr/heroes/${name.toLowerCase()}`);
+export const HeroeInfo = ({ hero }: { hero: FullHero }) => {
 	return (
 		<main className="flex flex-col w-full min-h-screen bg-black px-6 gap-10">
 			<section className="flex flex-col items-center gap-4 mt-10">
@@ -52,7 +50,7 @@ export const HeroeInfo = ({ name }: { name: string }) => {
 			</section>
 			<div className="border"></div>
 			<section>
-				<img src={hero?.story.chapters[2].picture} alt="" />
+				<img src={hero?.story.chapters[0].picture} alt="" />
 
 			</section>
 			<div className="border"></div>

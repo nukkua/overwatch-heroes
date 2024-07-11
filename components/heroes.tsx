@@ -4,12 +4,12 @@ import { useFetch } from "@/hooks/useFetch";
 import { HeroeCard } from "./heroe-card";
 import { Heroe } from "@/interfaces/Heroe";
 
-export const Heroes = () => {
+interface Props {
+	heroes: Heroe[]
 
-	const { data: heroes } = useFetch<Heroe[]>("https://overfast-api.tekrop.fr/heroes");
+}
 
-
-
+export const Heroes = ({ heroes }: Props) => {
 
 	return (
 		<section className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 xl:gap-9">
