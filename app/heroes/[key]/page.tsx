@@ -1,8 +1,21 @@
-
 import type { FullHero } from "@/interfaces/HeroInfo";
 import { HeroeInfo } from '@/components/heroe-info'
 import type { Metadata, ResolvingMetadata } from 'next'
 import { notFound } from "next/navigation";
+import { Heroe } from "@/interfaces/Heroe";
+
+interface Props {
+	params: { key: string },
+}
+
+export async function generateStaticParams() {
+
+	const idHeroes: Heroe[] = await fetch(`https://overfast-api.tekrop.fr/heroes`).then(res => res.json());
+
+	return idHeroes.map(hero => ({
+		key: `${hero.key}`,
+	}))
+}
 
 
 const getHero = async (key: string): Promise<FullHero> => {
@@ -19,7 +32,7 @@ const getHero = async (key: string): Promise<FullHero> => {
 
 export async function generateMetadata(
 	{ params }: Props,
-	parent: ResolvingMetadata
+
 ): Promise<Metadata> {
 	try {
 		const key = await getHero(params.key);
@@ -36,10 +49,6 @@ export async function generateMetadata(
 
 }
 
-interface Props {
-	params: { key: string },
-	heroe: FullHero,
-}
 
 export default async function HeroePage({ params }: Props) {
 	const { key } = params
